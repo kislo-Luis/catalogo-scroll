@@ -1,0 +1,608 @@
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+
+body {
+  background: #ffffff;
+  color: #111111;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+}
+
+
+
+/* =====================================================
+   CATÁLOGO
+===================================================== */
+
+.catalogo {
+
+  width: 100%;
+  height: 100dvh;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  scroll-snap-type: y mandatory;
+
+  scroll-behavior: smooth;
+
+  scrollbar-width: none;
+}
+
+
+.catalogo::-webkit-scrollbar {
+  display: none;
+}
+
+
+/* =====================================================
+   PRODUCTO
+===================================================== */
+
+.producto {
+
+  position: relative;
+
+  width: 100%;
+  height: 100dvh;
+
+  overflow: hidden;
+
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+
+  background: #ffffff;
+}
+
+
+/* =====================================================
+   IMAGEN
+===================================================== */
+
+.producto-imagen {
+
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+  object-position: center center;
+
+  background: #ffffff;
+
+  user-select: none;
+
+  -webkit-user-drag: none;
+}
+
+
+/* =====================================================
+   DEGRADADO
+===================================================== */
+
+.producto::after {
+
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 2;
+
+  pointer-events: none;
+
+  background:
+
+    linear-gradient(
+      to bottom,
+
+      rgba(255,255,255,0) 35%,
+
+      rgba(255,255,255,0) 47%,
+
+      rgba(255,255,255,.15) 57%,
+
+      rgba(255,255,255,.62) 70%,
+
+      rgba(255,255,255,.94) 86%,
+
+      #ffffff 100%
+    );
+}
+
+
+/* =====================================================
+   CABECERA
+===================================================== */
+
+.cabecera {
+
+  position: absolute;
+
+  z-index: 10;
+
+  top: 0;
+  left: 0;
+  right: 0;
+
+  padding: 22px 20px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  pointer-events: none;
+}
+
+
+.marca {
+
+  color: #002B5C;
+
+  font-family: monospace;
+
+  font-size: 16px;
+
+  font-weight: 700;
+
+  letter-spacing: 0;
+}
+
+
+.contador {
+
+  color: #002B5C;
+
+  font-family: monospace;
+
+  font-size: 12px;
+
+  font-weight: 700;
+}
+
+
+/* =====================================================
+   INDICADOR LATERAL
+===================================================== */
+
+.scroll {
+
+  position: absolute;
+
+  z-index: 10;
+
+  right: 14px;
+
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  writing-mode: vertical-rl;
+
+  color: #002B5C;
+
+  font-family: monospace;
+
+  font-size: 9px;
+
+  letter-spacing: 2px;
+
+  opacity: .65;
+
+  pointer-events: none;
+}
+
+
+.scroll::after {
+
+  content: "↓";
+
+  display: block;
+
+  margin-top: 8px;
+
+  text-align: center;
+
+  font-size: 17px;
+}
+
+
+/* =====================================================
+   INFORMACIÓN
+===================================================== */
+
+.info {
+
+  position: absolute;
+
+  z-index: 5;
+
+  left: 20px;
+  right: 20px;
+
+  bottom: 24px;
+}
+
+
+/* =====================================================
+   ALERTA STOCK
+===================================================== */
+
+.alerta-stock {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  margin-bottom: 10px;
+
+  padding: 7px 10px;
+
+  background: #f5c400;
+
+  color: #002B5C;
+
+  border: 2px solid #002B5C;
+
+  font-size: 12px;
+
+  font-weight: 900;
+
+  letter-spacing: .3px;
+
+  text-transform: uppercase;
+
+  box-shadow:
+    3px 3px 0 rgba(0,0,0,.15);
+}
+
+
+.alerta-icono {
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 20px;
+  height: 20px;
+
+  background: #002B5C;
+
+  color: #f5c400;
+
+  font-size: 15px;
+
+  font-weight: 900;
+}
+
+
+/* =====================================================
+   NOMBRE DEL PRODUCTO
+===================================================== */
+
+.nombre {
+
+  color: #002B5C;
+
+  font-size:
+    clamp(
+      30px,
+      9vw,
+      56px
+    );
+
+  line-height: .92;
+
+  font-weight: 900;
+
+  letter-spacing: -1.5px;
+
+  text-transform: uppercase;
+}
+
+
+/* =====================================================
+   DESCRIPCIÓN
+===================================================== */
+
+.descripcion {
+
+  margin-top: 8px;
+
+  color: #222222;
+
+  font-size: 15px;
+
+  line-height: 1.3;
+
+  font-weight: 500;
+}
+
+
+/* =====================================================
+   WHATSAPP
+===================================================== */
+/* =====================================================
+   WHATSAPP CTA
+===================================================== */
+
+.whatsapp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 56px;
+
+  margin-top: 18px;
+
+  background: #ffffff;
+
+  color: #075e54;
+
+  border: 2px solid #128c7e;
+
+  border-radius: 12px;
+
+  text-decoration: none;
+
+  font-size: 14px;
+
+  font-weight: 900;
+
+  letter-spacing: .4px;
+
+  box-shadow:
+    0 4px 0 #075e54,
+    0 8px 18px rgba(0, 0, 0, 0.14);
+
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease;
+}
+
+
+.whatsapp:hover {
+  background: #f4fffc;
+}
+
+
+.whatsapp:active {
+  transform: translateY(4px);
+
+  box-shadow:
+    0 1px 0 #075e54,
+    0 3px 8px rgba(0, 0, 0, 0.12);
+}
+
+.whatsapp-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 27px;
+  height: 27px;
+
+  margin-right: 9px;
+
+  color: #075e54;
+
+  flex-shrink: 0;
+}
+
+.whatsapp-icon svg {
+  width: 22px;
+  height: 22px;
+
+  display: block;
+}
+
+/* =====================================================
+   DESKTOP
+===================================================== */
+
+@media (min-width: 700px) {
+
+  body {
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: linear-gradient(
+      to right,
+      #f5c400 0%,
+      #f5c400 50%,
+      #002B5C 50%,
+      #002B5C 100%
+    );
+  }
+
+
+  .catalogo {
+
+    width: 430px;
+
+    max-width: 430px;
+
+    height: 92dvh;
+
+    box-shadow:
+      0 20px 60px rgba(0,0,0,.20);
+  }
+
+
+  .producto {
+
+    height: 92dvh;
+  }
+
+}
+
+.whatsapp-icon {
+  animation: whatsappPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes whatsappPulse {
+
+  0% {
+    transform: scale(1);
+  }
+
+  10% {
+    transform: scale(1.12);
+  }
+
+  20% {
+    transform: scale(1);
+  }
+
+  30% {
+    transform: scale(1.08);
+  }
+
+  40%,
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* =====================================================
+   UBICACIÓN
+===================================================== */
+
+.ubicacion {
+
+  margin-top: 18px;
+
+  display: flex;
+  flex-direction: column;
+
+  color: #002B5C;
+
+  font-family: monospace;
+
+  font-size: 11px;
+
+  line-height: 1.4;
+
+  text-transform: uppercase;
+
+  letter-spacing: .5px;
+}
+
+
+.ubicacion strong {
+
+  font-size: 12px;
+
+  font-weight: 900;
+}
+
+
+.ubicacion span {
+
+  opacity: .65;
+}
+
+/* =====================================================
+   COMPARTIR
+===================================================== */
+
+.cabecera-derecha {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+
+.compartir {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 5px;
+
+  padding: 5px 0;
+
+  background: transparent;
+
+  border: none;
+
+  color: #002B5C;
+
+  font-family: monospace;
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: .5px;
+
+  cursor: pointer;
+
+  pointer-events: auto;
+
+  transition:
+    opacity .15s ease,
+    transform .15s ease;
+}
+
+
+.compartir:hover {
+  opacity: .65;
+}
+
+
+.compartir:active {
+  transform: scale(.94);
+}
+
+
+.compartir-icono {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 18px;
+  height: 18px;
+
+  flex-shrink: 0;
+}
+
+
+.compartir-icono svg {
+  width: 17px;
+  height: 17px;
+
+  display: block;
+}
