@@ -181,8 +181,7 @@ function crearProducto(producto, indice, total) {
   /* ---------------------------------------------------
      CABECERA
   --------------------------------------------------- */
-
-  const cabecera =
+   const cabecera =
     document.createElement("header");
 
   cabecera.className =
@@ -190,9 +189,62 @@ function crearProducto(producto, indice, total) {
 
   cabecera.innerHTML = `
 
-    <div class="marca">
-      AloBoca Misiones
+    <div class="marca-instagram">
+
+      <a
+        class="instagram-link"
+        href="https://www.instagram.com/alobocamisiones/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Instagram AloBoca Misiones"
+      >
+
+        <span class="instagram-icono">
+
+          <svg
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+
+            <rect
+              x="3"
+              y="3"
+              width="18"
+              height="18"
+              rx="5"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            />
+
+            <circle
+              cx="12"
+              cy="12"
+              r="4"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            />
+
+            <circle
+              cx="17.5"
+              cy="6.5"
+              r="1"
+              fill="currentColor"
+            />
+
+          </svg>
+
+        </span>
+
+        <span>
+          alobocamisiones
+        </span>
+
+      </a>
+
     </div>
+
 
     <div class="cabecera-derecha">
 
@@ -211,7 +263,7 @@ function crearProducto(producto, indice, total) {
 
             <path
               fill="currentColor"
-              d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11A2.99 2.99 0 1 0 15 5c0 .24.04.47.09.7L8.04 9.81A3 3 0 1 0 8 14.19l7.12 4.16c-.04.21-.07.43-.07.65a2.95 2.95 0 1 0 2.95-2.92ZM6 13a1 1 0 1 1 0-2 1 1 0 0 1 0 2ZM18 4a1 1 0 1 1 0 2 1 1 0 0 1 0-2Zm0 16a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"
+              d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11A2.99 2.99 0 1 0 15 5c0 .24.04.47.09.7L8.04 9.81A3 3 0 1 0 8 14.19l7.12 4.16c-.04.21-.07.43-.07.65a2.95 2.95 0 1 0 2.95-2.92ZM6 13a1 1 0 1 1 0-2 1 1 0 0 1 0 2ZM18 4a1 1 0 1 1 0 2 1 1 0 0 1 0 2Zm0 16a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"
             />
 
           </svg>
@@ -234,7 +286,6 @@ function crearProducto(producto, indice, total) {
   `;
 
   section.appendChild(cabecera);
-
 
   /* ---------------------------------------------------
      EVENTO COMPARTIR
@@ -442,6 +493,9 @@ function generarCatalogo() {
     }
   );
 }
+
+
+
 
 
 /* =====================================================

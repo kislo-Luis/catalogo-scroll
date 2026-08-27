@@ -606,3 +606,121 @@ body {
 
   display: block;
 }
+
+/* =====================================================
+   INSTAGRAM EN CABECERA
+===================================================== */
+
+.cabecera-izquierda {
+  display: flex;
+  align-items: center;
+}
+
+
+.instagram {
+  display: flex;
+  align-items: center;
+
+  gap: 6px;
+
+  color: #002B5C;
+
+  font-family: monospace;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  letter-spacing: 0;
+
+  text-decoration: none;
+
+  white-space: nowrap;
+}
+
+
+.instagram-icono {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 15px;
+  height: 15px;
+
+  flex-shrink: 0;
+}
+
+
+.instagram-icono svg {
+  display: block;
+
+  width: 15px;
+  height: 15px;
+
+  color: #002B5C;
+}
+
+
+.instagram-nombre {
+  display: block;
+}
+
+
+.instagram:hover {
+  opacity: .65;
+}
+
+/* =====================================================
+   INSTAGRAM
+===================================================== */
+
+.marca-instagram {
+  pointer-events: auto;
+}
+
+
+.instagram-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  color: #002B5C;
+
+  text-decoration: none;
+
+  font-family: monospace;
+
+  font-size: 16px;
+
+  font-weight: 700;
+
+  letter-spacing: 0;
+
+  pointer-events: auto;
+}
+
+
+.instagram-link:hover {
+  opacity: .65;
+}
+
+
+.instagram-icono {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 20px;
+  height: 20px;
+
+  flex-shrink: 0;
+}
+
+
+.instagram-icono svg {
+  width: 19px;
+  height: 19px;
+
+  display: block;
+}
