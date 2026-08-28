@@ -34,15 +34,24 @@ ${nombre}
 
 
 /* =====================================================
-   COMPARTIR PÁGINA
+   COMPARTIR PRODUCTO
 ===================================================== */
 
-async function compartirPagina() {
+async function compartirPagina(producto) {
+
+  const url =
+    new URL(window.location.href);
+
+  url.searchParams.set(
+    "producto",
+    producto.archivo
+  );
+
 
   const datosCompartir = {
     title: "AloBoca Misiones",
-    text: "Indumentaria xeneize · Liquidación de temporada",
-    url: window.location.href
+    text: "Mirá este producto 🔥🔥💛💛💙💙",
+    url: url.toString()
   };
 
 
@@ -76,7 +85,7 @@ async function compartirPagina() {
   try {
 
     await navigator.clipboard.writeText(
-      window.location.href
+      url.toString()
     );
 
     mostrarAvisoCompartir(
@@ -181,7 +190,8 @@ function crearProducto(producto, indice, total) {
   /* ---------------------------------------------------
      CABECERA
   --------------------------------------------------- */
-   const cabecera =
+
+  const cabecera =
     document.createElement("header");
 
   cabecera.className =
@@ -287,6 +297,7 @@ function crearProducto(producto, indice, total) {
 
   section.appendChild(cabecera);
 
+
   /* ---------------------------------------------------
      EVENTO COMPARTIR
   --------------------------------------------------- */
@@ -296,7 +307,7 @@ function crearProducto(producto, indice, total) {
 
   botonCompartir.addEventListener(
     "click",
-    compartirPagina
+    () => compartirPagina(producto)
   );
 
 
@@ -492,10 +503,52 @@ function generarCatalogo() {
 
     }
   );
+
+
+  /* ---------------------------------------------------
+     PRODUCTO INDICADO EN LA URL
+  --------------------------------------------------- */
+
+  const parametros =
+    new URLSearchParams(
+      window.location.search
+    );
+
+  const archivo =
+    parametros.get("producto");
+
+
+  if (!archivo) {
+    return;
+  }
+
+
+  const indiceProducto =
+    productos.findIndex(
+      producto =>
+        producto.archivo === archivo
+    );
+
+
+  if (indiceProducto === -1) {
+    return;
+  }
+
+
+  const productoElemento =
+    catalogo.children[indiceProducto];
+
+
+  if (productoElemento) {
+
+    productoElemento.scrollIntoView({
+      behavior: "instant",
+      block: "start"
+    });
+
+  }
+
 }
-
-
-
 
 
 /* =====================================================
