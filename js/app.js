@@ -4,8 +4,8 @@
 
 const NUMERO_WHATSAPP = "5493764657997";
 
-const RUTA_IMAGENES =  "https://tuwebmisiones.com/alobocamisiones/public/indumentaria/";
-
+const RUTA_IMAGENES =
+  "https://tuwebmisiones.com/alobocamisiones/public/indumentaria/";
 
 /* =====================================================
    ELEMENTO PRINCIPAL
@@ -13,15 +13,12 @@ const RUTA_IMAGENES =  "https://tuwebmisiones.com/alobocamisiones/public/indumen
 
 const catalogo = document.getElementById("catalogo");
 
-
 /* =====================================================
    WHATSAPP
 ===================================================== */
 
 function crearWhatsApp(nombre) {
-
-  const mensaje =
-`Hola! 👋
+  const mensaje = `Hola! 👋
 
 Quiero consultar por:
 
@@ -32,170 +29,113 @@ ${nombre}
   return `https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(mensaje)}`;
 }
 
-
 /* =====================================================
    COMPARTIR PRODUCTO
 ===================================================== */
 
+const MENSAJE_COMPARTIR = "Mirá este producto 🔥🔥💛💛💙💙";
 async function compartirPagina(producto) {
+  const url = new URL(window.location.href);
 
-  const url =
-    new URL(window.location.href);
-
-  url.searchParams.set(
-    "producto",
-    producto.archivo
-  );
-
+  url.searchParams.set("producto", producto.archivo);
 
   const datosCompartir = {
     title: "AloBoca Misiones",
-    text: "Mirá este producto 🔥🔥💛💛💙💙",
-    url: url.toString()
+    text: MENSAJE_COMPARTIR,
+    url: url.toString(),
   };
-
 
   /* ---------------------------------------------------
      COMPARTIR NATIVO
   --------------------------------------------------- */
 
   if (navigator.share) {
-
     try {
-
       await navigator.share(datosCompartir);
 
       return;
-
     } catch (error) {
-
       /* El usuario canceló el compartir */
       if (error.name === "AbortError") {
         return;
       }
-
     }
   }
-
 
   /* ---------------------------------------------------
      FALLBACK: COPIAR ENLACE
   --------------------------------------------------- */
 
   try {
+    const textoCompartir = `${MENSAJE_COMPARTIR}\n\n${url.toString()}`;
 
-    await navigator.clipboard.writeText(
-      url.toString()
-    );
-
-    mostrarAvisoCompartir(
-      "ENLACE COPIADO"
-    );
-
+    await navigator.clipboard.writeText(textoCompartir);
+    mostrarAvisoCompartir("ENLACE COPIADO");
   } catch (error) {
-
-    mostrarAvisoCompartir(
-      "COPIÁ EL ENLACE DE LA PÁGINA"
-    );
-
+    mostrarAvisoCompartir("COPIÁ EL ENLACE DE LA PÁGINA");
   }
 }
-
 
 /* =====================================================
    AVISO DE COMPARTIR
 ===================================================== */
 
 function mostrarAvisoCompartir(texto) {
-
-  let aviso =
-    document.querySelector(".aviso-compartir");
-
+  let aviso = document.querySelector(".aviso-compartir");
 
   if (!aviso) {
+    aviso = document.createElement("div");
 
-    aviso =
-      document.createElement("div");
-
-    aviso.className =
-      "aviso-compartir";
+    aviso.className = "aviso-compartir";
 
     document.body.appendChild(aviso);
   }
 
+  aviso.textContent = texto;
 
-  aviso.textContent =
-    texto;
+  aviso.classList.add("visible");
 
+  clearTimeout(aviso._timeout);
 
-  aviso.classList.add(
-    "visible"
-  );
-
-
-  clearTimeout(
-    aviso._timeout
-  );
-
-
-  aviso._timeout =
-    setTimeout(() => {
-
-      aviso.classList.remove(
-        "visible"
-      );
-
-    }, 2000);
+  aviso._timeout = setTimeout(() => {
+    aviso.classList.remove("visible");
+  }, 2000);
 }
-
 
 /* =====================================================
    CREAR PRODUCTO
 ===================================================== */
 
 function crearProducto(producto, indice, total) {
+  const numero = String(indice + 1).padStart(2, "0");
 
-  const numero =
-    String(indice + 1).padStart(2, "0");
+  const totalFormateado = String(total).padStart(2, "0");
 
-  const totalFormateado =
-    String(total).padStart(2, "0");
-
-
-  const section =
-    document.createElement("section");
+  const section = document.createElement("section");
 
   section.className = "producto";
-
 
   /* ---------------------------------------------------
      IMAGEN
   --------------------------------------------------- */
 
-  const imagen =
-    document.createElement("img");
+  const imagen = document.createElement("img");
 
-  imagen.className =
-    "producto-imagen";
+  imagen.className = "producto-imagen";
 
-  imagen.src =
-    RUTA_IMAGENES + producto.archivo;
+  imagen.src = RUTA_IMAGENES + producto.archivo;
 
-  imagen.alt =
-    producto.nombre;
+  imagen.alt = producto.nombre;
 
   section.appendChild(imagen);
-
 
   /* ---------------------------------------------------
      CABECERA
   --------------------------------------------------- */
 
-  const cabecera =
-    document.createElement("header");
+  const cabecera = document.createElement("header");
 
-  cabecera.className =
-    "cabecera";
+  cabecera.className = "cabecera";
 
   cabecera.innerHTML = `
 
@@ -297,58 +237,42 @@ function crearProducto(producto, indice, total) {
 
   section.appendChild(cabecera);
 
-
   /* ---------------------------------------------------
      EVENTO COMPARTIR
   --------------------------------------------------- */
 
-  const botonCompartir =
-    cabecera.querySelector(".compartir");
+  const botonCompartir = cabecera.querySelector(".compartir");
 
-  botonCompartir.addEventListener(
-    "click",
-    () => compartirPagina(producto)
-  );
-
+  botonCompartir.addEventListener("click", () => compartirPagina(producto));
 
   /* ---------------------------------------------------
      INDICADOR DE SCROLL
   --------------------------------------------------- */
 
-  const scroll =
-    document.createElement("div");
+  const scroll = document.createElement("div");
 
-  scroll.className =
-    "scroll";
+  scroll.className = "scroll";
 
-  scroll.textContent =
-    "DESLIZÁ";
+  scroll.textContent = "DESLIZÁ";
 
   section.appendChild(scroll);
-
 
   /* ---------------------------------------------------
      INFORMACIÓN
   --------------------------------------------------- */
 
-  const info =
-    document.createElement("div");
+  const info = document.createElement("div");
 
-  info.className =
-    "info";
-
+  info.className = "info";
 
   /* ---------------------------------------------------
      ÚLTIMA EN STOCK
   --------------------------------------------------- */
 
   if (producto.ultima === true) {
+    const alerta = document.createElement("div");
 
-    const alerta =
-      document.createElement("div");
-
-    alerta.className =
-      "alerta-stock";
+    alerta.className = "alerta-stock";
 
     alerta.innerHTML = `
 
@@ -363,61 +287,45 @@ function crearProducto(producto, indice, total) {
     info.appendChild(alerta);
   }
 
-
   /* ---------------------------------------------------
      NOMBRE DEL PRODUCTO
   --------------------------------------------------- */
 
-  const nombre =
-    document.createElement("h1");
+  const nombre = document.createElement("h1");
 
-  nombre.className =
-    "nombre";
+  nombre.className = "nombre";
 
-  nombre.textContent =
-    producto.nombre;
+  nombre.textContent = producto.nombre;
 
   info.appendChild(nombre);
-
 
   /* ---------------------------------------------------
      DESCRIPCIÓN
   --------------------------------------------------- */
 
   if (producto.descripcion) {
+    const descripcion = document.createElement("p");
 
-    const descripcion =
-      document.createElement("p");
+    descripcion.className = "descripcion";
 
-    descripcion.className =
-      "descripcion";
-
-    descripcion.textContent =
-      producto.descripcion;
+    descripcion.textContent = producto.descripcion;
 
     info.appendChild(descripcion);
   }
-
 
   /* ---------------------------------------------------
      WHATSAPP
   --------------------------------------------------- */
 
-  const whatsapp =
-    document.createElement("a");
+  const whatsapp = document.createElement("a");
 
-  whatsapp.className =
-    "whatsapp";
+  whatsapp.className = "whatsapp";
 
-  whatsapp.href =
-    crearWhatsApp(producto.nombre);
+  whatsapp.href = crearWhatsApp(producto.nombre);
 
-  whatsapp.target =
-    "_blank";
+  whatsapp.target = "_blank";
 
-  whatsapp.rel =
-    "noopener noreferrer";
-
+  whatsapp.rel = "noopener noreferrer";
 
   whatsapp.innerHTML = `
 
@@ -443,21 +351,16 @@ function crearProducto(producto, indice, total) {
 
   `;
 
-
   info.appendChild(whatsapp);
-
 
   /* ---------------------------------------------------
      UBICACIÓN
   --------------------------------------------------- */
 
   if (indice === total - 1) {
+    const ubicacion = document.createElement("div");
 
-    const ubicacion =
-      document.createElement("div");
-
-    ubicacion.className =
-      "ubicacion";
+    ubicacion.className = "ubicacion";
 
     ubicacion.innerHTML = `
       <strong>AloBoca Misiones</strong>
@@ -467,89 +370,55 @@ function crearProducto(producto, indice, total) {
     info.appendChild(ubicacion);
   }
 
-
   section.appendChild(info);
-
 
   return section;
 }
-
 
 /* =====================================================
    GENERAR CATÁLOGO
 ===================================================== */
 
 function generarCatalogo() {
-
   catalogo.innerHTML = "";
 
-  const total =
-    productos.length;
+  const total = productos.length;
 
+  productos.forEach((producto, indice) => {
+    const elemento = crearProducto(producto, indice, total);
 
-  productos.forEach(
-    (producto, indice) => {
-
-      const elemento =
-        crearProducto(
-          producto,
-          indice,
-          total
-        );
-
-      catalogo.appendChild(
-        elemento
-      );
-
-    }
-  );
-
+    catalogo.appendChild(elemento);
+  });
 
   /* ---------------------------------------------------
      PRODUCTO INDICADO EN LA URL
   --------------------------------------------------- */
 
-  const parametros =
-    new URLSearchParams(
-      window.location.search
-    );
+  const parametros = new URLSearchParams(window.location.search);
 
-  const archivo =
-    parametros.get("producto");
-
+  const archivo = parametros.get("producto");
 
   if (!archivo) {
     return;
   }
 
-
-  const indiceProducto =
-    productos.findIndex(
-      producto =>
-        producto.archivo === archivo
-    );
-
+  const indiceProducto = productos.findIndex(
+    (producto) => producto.archivo === archivo,
+  );
 
   if (indiceProducto === -1) {
     return;
   }
 
-
-  const productoElemento =
-    catalogo.children[indiceProducto];
-
+  const productoElemento = catalogo.children[indiceProducto];
 
   if (productoElemento) {
-
     productoElemento.scrollIntoView({
       behavior: "instant",
-      block: "start"
+      block: "start",
     });
-
   }
-
 }
-
 
 /* =====================================================
    INICIAR
