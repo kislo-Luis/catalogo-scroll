@@ -33,7 +33,7 @@ ${nombre}
    COMPARTIR PRODUCTO
 ===================================================== */
 
-const MENSAJE_COMPARTIR = "Mirá este producto 🔥🔥💛💛💙💙";
+const MENSAJE_COMPARTIR = "💛💙Mirá este producto en Aloboca.com🔥🔥";
 async function compartirPagina(producto) {
   const url = new URL(window.location.href);
 
@@ -236,7 +236,34 @@ function crearProducto(producto, indice, total) {
   `;
 
   section.appendChild(cabecera);
+  /* ---------------------------------------------------
+   PRODUCTO EN REMATE
+--------------------------------------------------- */
 
+if (producto.remate === true) {
+  const alertaRemate = document.createElement("div");
+  alertaRemate.className = "alerta-remate";
+
+  alertaRemate.innerHTML = `
+    <span class="alerta-remate-icono">
+      <svg
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
+        <path
+          d="M13.5 2.5c.2 3-1.2 4.5-2.6 6.1-1.1 1.2-2.1 2.3-2.1 4.4
+             0 1.3.5 2.4 1.3 3.2-.1-1.6.7-2.7 1.7-3.7
+             .8-.8 1.6-1.7 1.7-3.3 2.1 1.7 3.5 4 3.5 6.6
+             0 1.1-.3 2.1-.8 3 1.9-1.1 3.3-3.2 3.3-5.7
+             0-4.2-2.5-7.2-6-10.6Z"
+        />
+      </svg>
+    </span>
+    REMATE
+  `;
+
+  section.appendChild(alertaRemate);
+}
   /* ---------------------------------------------------
      EVENTO COMPARTIR
   --------------------------------------------------- */

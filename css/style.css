@@ -302,6 +302,87 @@ body {
   font-weight: 900;
 }
 
+/* =====================================================
+   PRODUCTO EN REMATE
+===================================================== */
+
+.alerta-remate {
+  position: absolute;
+  top: 80px;
+  right: 20px;
+  z-index: 10;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  padding: 7px 11px;
+
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+
+  color: #e85d04;
+  border: 2px solid #e85d04;
+
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .3px;
+  text-transform: uppercase;
+
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, .12);
+
+  border-radius: 10px 10px 10px 0;
+
+  pointer-events: none;
+}
+
+.alerta-remate-icono {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 20px;
+  height: 20px;
+
+  color: #e85d04;
+}
+
+.alerta-remate-icono svg {
+  width: 20px;
+  height: 20px;
+
+  fill: currentColor;
+}
+
+.alerta-remate-icono svg {
+  animation: rematePulse 1.8s ease-in-out infinite;
+}
+
+@keyframes rematePulse {
+
+  0% {
+    transform: scale(1);
+  }
+
+  10% {
+    transform: scale(1.12);
+  }
+
+  20% {
+    transform: scale(1);
+  }
+
+  30% {
+    transform: scale(1.08);
+  }
+
+  40%,
+  100% {
+    transform: scale(1);
+  }
+}
+
 
 /* =====================================================
    NOMBRE DEL PRODUCTO

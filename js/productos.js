@@ -4,7 +4,8 @@ const productos = [
     archivo: "97-quilm3s.png",
     descripcion: "Talle M . $29.000",
     nombre: "Titular 1997",
-    ultima: true
+    ultima: true,
+    remate:true
   },    
 
   
